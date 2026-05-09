@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #1a1a1a;
+  --color-cream: #f5f0e8;
+  --color-gold: #c9a84c;
+  --color-gold-hover: #e0bc55;
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
+}
+
+@layer base {
+  body {
+    @apply bg-charcoal text-cream font-sans;
+  }
+}
