@@ -6,6 +6,7 @@ import {
   MapPin, Phone, Mail, Clock, Award, BookOpen, 
   Briefcase, CheckCircle2 
 } from 'lucide-react';
+import { MannequinDrawing, SewingMachineDrawing, ShearsDrawing } from './components/Graphics';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -144,6 +145,14 @@ export default function App() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/5 via-charcoal to-charcoal"></div>
           <div className="absolute top-1/4 -right-1/4 w-1/2 h-1/2 bg-gold/5 blur-[120px] rounded-full"></div>
           <div className="absolute bottom-0 -left-1/4 w-2/3 h-1/2 bg-white/5 blur-[100px] rounded-full"></div>
+          <motion.div 
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 0.1, x: 0 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute right-[-10%] top-[10%] w-full max-w-[800px] pointer-events-none hidden lg:block"
+          >
+            <MannequinDrawing className="w-full h-auto text-cream" />
+          </motion.div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
@@ -210,6 +219,7 @@ export default function App() {
             </div>
             <motion.div variants={fadeUp} className="relative h-full min-h-[400px] flex items-center justify-center bg-charcoal rounded-2xl border border-white/10 p-12 overflow-hidden group">
               <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gold to-transparent mix-blend-screen transition-opacity duration-700 group-hover:opacity-40"></div>
+              <MannequinDrawing className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] text-white opacity-5" />
               <div className="relative z-10 text-center">
                 <Scissors className="w-12 h-12 text-gold mx-auto mb-6" strokeWidth={1} />
                 <p className="font-serif text-2xl italic text-cream leading-relaxed">
@@ -358,11 +368,11 @@ export default function App() {
           >
             {/* Course 1 */}
             <motion.div variants={fadeUp} className="bg-white/5 border border-white/10 rounded-2xl p-8 sm:p-10 flex flex-col items-start relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-5">
-                <Scissors size={120} />
+              <div className="absolute top-[-20%] right-[-10%] w-[80%] opacity-5 pointer-events-none">
+                <SewingMachineDrawing className="w-full h-auto text-white" />
               </div>
-              <span className="bg-white/10 text-cream px-3 py-1 rounded text-xs font-semibold tracking-wider uppercase mb-6">Level: Beginner</span>
-              <h4 className="font-serif text-3xl mb-6 text-gold">Basic Cutting &amp; Tailoring</h4>
+              <span className="bg-white/10 text-cream px-3 py-1 rounded text-xs font-semibold tracking-wider uppercase mb-6 relative z-10">Level: Beginner</span>
+              <h4 className="font-serif text-3xl mb-6 text-gold relative z-10">Basic Cutting &amp; Tailoring</h4>
               
               <ul className="space-y-4 mb-8 flex-grow relative z-10 w-full">
                 {['Introduction to sewing on industrial and manual machines', 'Basic pattern drafting', 'Garment construction fundamentals', 'Fabric knowledge and tools', 'Basic finishing techniques'].map((item, i) => (
@@ -373,7 +383,7 @@ export default function App() {
                 ))}
               </ul>
               
-              <div className="grid grid-cols-2 gap-4 w-full pt-6 border-t border-white/10 mb-8">
+              <div className="grid grid-cols-2 gap-4 w-full pt-6 border-t border-white/10 mb-8 relative z-10">
                 <div>
                   <p className="text-xs text-cream/50 uppercase tracking-widest mb-1">Duration</p>
                   <p className="font-medium">145 Hours</p>
@@ -395,11 +405,11 @@ export default function App() {
 
             {/* Course 2 */}
             <motion.div variants={fadeUp} className="bg-charcoal border border-gold/30 rounded-2xl p-8 sm:p-10 flex flex-col items-start relative overflow-hidden shadow-[0_0_40px_rgba(201,168,76,0.05)]">
-               <div className="absolute top-0 right-0 p-8 opacity-5">
-                <Briefcase size={120} />
+               <div className="absolute top-[10%] right-[-10%] w-[60%] opacity-5 pointer-events-none">
+                <ShearsDrawing className="w-full h-auto text-white" />
               </div>
-              <span className="bg-gold text-charcoal px-3 py-1 rounded text-xs font-bold tracking-wider uppercase mb-6">Level: Advanced</span>
-              <h4 className="font-serif text-3xl mb-6">Advanced Cutting &amp; Tailoring</h4>
+              <span className="bg-gold text-charcoal px-3 py-1 rounded text-xs font-bold tracking-wider uppercase mb-6 relative z-10">Level: Advanced</span>
+              <h4 className="font-serif text-3xl mb-6 relative z-10">Advanced Cutting &amp; Tailoring</h4>
               
               <ul className="space-y-4 mb-8 flex-grow relative z-10 w-full">
                 {['Advanced pattern drafting and grading', 'Complex garment construction', 'Sewing on industrial and manual machines', 'How to start your own tailoring unit or boutique', 'Client handling and business basics', 'Quality control and finishing'].map((item, i) => (
@@ -681,9 +691,10 @@ export default function App() {
                     <select 
                       id="enquiry" 
                       required
+                      defaultValue=""
                       className="w-full bg-charcoal border border-white/10 rounded-sm px-4 py-3 text-cream focus:outline-none focus:border-gold transition-colors appearance-none"
                     >
-                      <option value="" disabled selected>Select an option</option>
+                      <option value="" disabled>Select an option</option>
                       <option value="tailoring">Custom Tailoring</option>
                       <option value="footwear">Footwear</option>
                       <option value="linens">Linens</option>
